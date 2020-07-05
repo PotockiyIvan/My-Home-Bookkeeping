@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBookkeeping.BL", "MyHomeBookkeeping.BL\MyHomeBookkeeping.BL.csproj", "{FAF4B23F-7642-4A9A-8BE0-70D17D159EDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBookkeeping.CMD", "MyHomeBookkeeping.CMD\MyHomeBookkeeping.CMD.csproj", "{DDFE31D0-9328-4A08-95A1-7EE149172C31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeBookkeeping.CMD", "MyHomeBookkeeping.CMD\MyHomeBookkeeping.CMD.csproj", "{DDFE31D0-9328-4A08-95A1-7EE149172C31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeBookkeeping.BLTests1", "MyHomeBookkeeping.BLTests1\MyHomeBookkeeping.BLTests1.csproj", "{8BA31EBC-68C5-433D-82F8-42CA0C82BC51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DDFE31D0-9328-4A08-95A1-7EE149172C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDFE31D0-9328-4A08-95A1-7EE149172C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDFE31D0-9328-4A08-95A1-7EE149172C31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA31EBC-68C5-433D-82F8-42CA0C82BC51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA31EBC-68C5-433D-82F8-42CA0C82BC51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA31EBC-68C5-433D-82F8-42CA0C82BC51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA31EBC-68C5-433D-82F8-42CA0C82BC51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

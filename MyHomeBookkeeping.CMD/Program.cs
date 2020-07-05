@@ -11,9 +11,8 @@ namespace MyHomeBookkeeping.CMD
             Console.Write("Введите имя аккаунта: ");
 
             var accountName = Console.ReadLine();
-            var AccountController =  new AccountController(accountName);
-            var spendingController = new SpendingController(AccountController.CurrentAccount);
-            var incomeController =   new IncomeController(AccountController.CurrentAccount);
+            var accountController =  new AccountController(accountName);
+            var actionController = new ActionController(accountController.CurrentAccount);
 
             while (true)
             {
@@ -24,14 +23,54 @@ namespace MyHomeBookkeeping.CMD
                 switch (command)
                 {
                     case 1:
-                        //РЕАЛИЗУЙ ДОБАВЛЕНИЕ РАСХОДА
-
+                        var spending = EnterData();
+                        actionController.AddSpending(spending.spendingName,
+                                                       spending.amount,
+                                                       spending.category,
+                                                       spending.comment);
                         break;
                     case 2:
+                        var income = EnterData();
+                        actionController.AddIncome(income.spendingName,
+                                                       income.amount,
+                                                       income.category,
+                                                       income.comment);
                         break;
                     default:
                         break;
                 }
+            }
+        }
+        /// <summary>
+        /// Кортежный метод для ввода данных по тратам и доходам.
+        /// </summary>
+        /// <returns></returns>
+        private static (string spendingName, double amount, string category, string comment) EnterData()
+        {
+            Console.WriteLine("Введите название расхода:");
+            var spendingName = Console.ReadLine();
+            var amount = ParseDouble("расход");
+            Console.WriteLine("В какую категорию его добавить?");
+            var category = Console.ReadLine();
+            Console.WriteLine("Введите комментарий к расходу:");
+            var comment = Console.ReadLine();
+
+            return (spendingName, amount, category, comment);
+        }
+        /// <summary>
+        /// Парс данных из стринг в дабл.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private static double ParseDouble(string name)
+        {
+            while (true)
+            {
+                Console.WriteLine($"Введите объем {name}а:");
+                if (double.TryParse(Console.ReadLine(), out double value))
+                    return value;
+                else
+                    Console.WriteLine("Неверный формат,попробуйте еще раз.");
             }
         }
     }

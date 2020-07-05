@@ -30,7 +30,7 @@ namespace MyHomeBookkeeping.BL.Controller
 
             Accounts = GetAccountData();
 
-            CurrentAccount = Accounts.FirstOrDefault(a => CurrentAccount.Name == accountName);
+            CurrentAccount = Accounts.FirstOrDefault(a => a.Name == accountName);
             if(CurrentAccount == null)
             {
                 CurrentAccount = new Account(accountName);

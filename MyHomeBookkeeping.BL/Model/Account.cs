@@ -10,7 +10,7 @@ namespace MyHomeBookkeeping.BL.Model
         /// <summary>
         /// Нащвание Аккаунта.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
         /// <summary>
         /// Баланс аккаунта.
         /// </summary>
@@ -35,6 +35,9 @@ namespace MyHomeBookkeeping.BL.Model
             Name = name;
         }
 
-
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
