@@ -21,13 +21,13 @@ namespace MyHomeBookkeeping.BL.Controller
         /// <summary>
         /// Аккаунт.
         /// </summary>
-        public virtual Account Account { get; }
+        public Account CurrentAccount { get; }
 
         public ActionController(Account account)
         {
-            this.Account = account ?? throw new ArgumentNullException("Аккаунт не может быть пустым", nameof(account));
-            GetData<Spending>("spendings.dat");
-            GetData<Income>("incomes.dat");
+            this.CurrentAccount = account ?? throw new ArgumentNullException("Аккаунт не может быть пустым", nameof(account));
+            this.Spendings = GetData<Spending>("spendings.dat");
+            this.Incomes = GetData<Income>("incomes.dat");
         }
 
         //ПОДУМАЙ КАК ОБЬЕДЕНИТЬ ЭТИ ДВА МЕТОДА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -43,6 +43,7 @@ namespace MyHomeBookkeeping.BL.Controller
         {
             var spending = new Spending(spendingName, amount, category, comment);
             Spendings.Add(spending);
+            CurrentAccount.Withdrow(amount);
             SaveData(spending);
         }
 
@@ -57,6 +58,7 @@ namespace MyHomeBookkeeping.BL.Controller
         {
             var income = new Income(incomeName, amount, category, comment);
             Incomes.Add(income);
+            CurrentAccount.Put(amount);
             SaveData(income);
         }
 

@@ -15,7 +15,7 @@ namespace MyHomeBookkeeping.BL.Controller
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="item"></param>
-        protected void  Save(string fileName,object item)
+        protected void  Save<T>(string fileName,List<T> item) where T : class
         {
             var formatter = new BinaryFormatter();
 

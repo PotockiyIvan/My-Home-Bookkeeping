@@ -4,6 +4,7 @@ using System.Text;
 
 namespace MyHomeBookkeeping.BL.Model
 {
+    [Serializable]
     public abstract class Action
     {
         /// <summary>
@@ -46,6 +47,11 @@ namespace MyHomeBookkeeping.BL.Model
         /// <summary>
         /// Комментарий.
         /// </summary>
-        public string Comment { get; }    
+        public string Comment { get; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
