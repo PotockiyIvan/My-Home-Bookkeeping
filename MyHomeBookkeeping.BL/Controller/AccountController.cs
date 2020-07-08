@@ -18,6 +18,8 @@ namespace MyHomeBookkeeping.BL.Controller
         /// </summary>
         public Account CurrentAccount { get; }
 
+        public AccountController() { }
+
         /// <summary>
         /// Создание нового аккаунта
         /// Или его десериализация.
@@ -35,18 +37,20 @@ namespace MyHomeBookkeeping.BL.Controller
             {
                 CurrentAccount = new Account(accountName);
                 Accounts.Add(CurrentAccount);
-                SaveAccountDaata();
+                SaveAccountData();
             }
             else            
                 Console.WriteLine($"Вы вошли в аккаунт: {CurrentAccount.Name}");            
         }
+
         /// <summary>
         /// Сохранить список аккаунтов.
         /// </summary>
-        private void SaveAccountDaata()
+        public  void SaveAccountData()
         {
-            Save("accounts.dat", Accounts);
+            Save("accounts.dat",Accounts);
         }
+
         /// <summary>
         /// Получить список аккаунтов.
         /// </summary>

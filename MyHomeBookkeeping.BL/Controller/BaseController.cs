@@ -24,6 +24,7 @@ namespace MyHomeBookkeeping.BL.Controller
                 formatter.Serialize(fs, item);
             }
         }
+
         /// <summary>
         /// Базовая десериализация.
         /// </summary>

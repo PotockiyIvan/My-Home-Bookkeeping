@@ -7,6 +7,35 @@ namespace MyHomeBookkeeping.BL.Model
     [Serializable]
     public abstract class Action
     {
+        #region свойства
+
+        /// <summary>
+        /// Название.
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
+        /// Объем.
+        /// </summary>
+        public double Amount { get; }
+
+        /// <summary>
+        /// Категория.
+        /// </summary>
+        public string Category { get; }
+
+        /// <summary>
+        /// Комментарий.
+        /// </summary>
+        public string Comment { get; }
+
+        /// <summary>
+        /// Дата добавления.
+        /// </summary>
+        public DateTime DateAdded { get; } = DateTime.UtcNow;
+
+        #endregion 
+
         /// <summary>
         /// Новое действие со счетом.
         /// </summary>
@@ -32,26 +61,13 @@ namespace MyHomeBookkeeping.BL.Model
             Comment = comment;
         }
 
-        /// <summary>
-        /// Название.
-        /// </summary>
-        public string Name { get; }
-        /// <summary>
-        /// Объем.
-        /// </summary>
-        public double Amount { get; }
-        /// <summary>
-        /// Категория.
-        /// </summary>
-        public string Category { get; }
-        /// <summary>
-        /// Комментарий.
-        /// </summary>
-        public string Comment { get; }
-
         public override string ToString()
-        {
-            return Name;
+        { 
+            return string.Format("{0,-35} {1,-35} {2,-15} {3,-30}",
+                                 "Категория: " + Category,
+                                 "Наименование:" + Name,
+                                 "Сумма:" + Amount,
+                                 "Время добавления:" + DateAdded);
         }
     }
 }

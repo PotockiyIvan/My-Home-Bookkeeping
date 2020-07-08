@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace MyHomeBookkeeping.BL.Controller
@@ -43,7 +44,7 @@ namespace MyHomeBookkeeping.BL.Controller
         {
             var spending = new Spending(spendingName, amount, category, comment);
             Spendings.Add(spending);
-            CurrentAccount.Withdrow(amount);
+            this.CurrentAccount.AccountBalance -= amount;
             SaveData(spending);
         }
 
@@ -58,10 +59,29 @@ namespace MyHomeBookkeeping.BL.Controller
         {
             var income = new Income(incomeName, amount, category, comment);
             Incomes.Add(income);
-            CurrentAccount.Put(amount);
+            this.CurrentAccount.AccountBalance += amount;
             SaveData(income);
         }
 
+        /// <summary>
+        /// Показать Расходы.
+        /// </summary>
+        /// <param name="items"></param>
+        public  void ShowActions(List<Spending> items)
+        {
+            items.Sort((s1, s2) => string.Compare(s1.Category, s2.Category));
+            items.ForEach(s => Console.WriteLine(s));
+        }
+
+        /// <summary>
+        /// Показать доходы.
+        /// </summary>
+        /// <param name="items"></param>
+        public  void ShowActions(List<Income> items)
+        {
+            items.Sort((s1, s2) => string.Compare(s1.Category, s2.Category));
+            items.ForEach(s => Console.WriteLine(s));
+        }
 
         /// <summary>
         /// Сохранить список расходов или доходов.
@@ -70,10 +90,12 @@ namespace MyHomeBookkeeping.BL.Controller
         {
             if (item is Spending)
                 Save("spendings.dat", Spendings);
+
             else if (item is Income)
                 Save("incomes.dat", Incomes);
             else
                 throw new ArgumentException("Обьект не является доходом или расходом", nameof(item));
+
         }
 
         /// <summary>
