@@ -39,8 +39,11 @@ namespace MyHomeBookkeeping.BL.Controller
                 Accounts.Add(CurrentAccount);
                 SaveAccountData();
             }
-            else            
-                Console.WriteLine($"Вы вошли в аккаунт: {CurrentAccount.Name}");            
+            else
+            {
+                Console.WriteLine($"Вы вошли в аккаунт: {CurrentAccount.Name}");
+                Console.WriteLine("Текущий балланс: " + CurrentAccount.AccountBalance + "\n\n");
+            }         
         }
 
         /// <summary>

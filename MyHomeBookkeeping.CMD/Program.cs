@@ -18,9 +18,8 @@ namespace MyHomeBookkeeping.CMD
 
             while (true)
             {
-                Console.WriteLine("Текущий балланс: " + accountController.CurrentAccount.AccountBalance + "\n\n");
                 Console.WriteLine("\t\t\t ВЫБЕРИТЕ ДЕЙСТВИЕ.");
-                Console.WriteLine("1. Добавить расход \t 2. Просмотреть расходы за месяц \t 3. ");
+                Console.WriteLine("1. Добавить расход \t 2. Просмотреть расходы за месяц \t 3. Посмотреть расходы и доходы по категориям ");
                 Console.WriteLine("4. Добавить доход  \t 5. Посмотреть доходы за месяц   \t 6. ");
 
                 var command = Convert.ToInt32(Console.ReadLine());
@@ -36,9 +35,10 @@ namespace MyHomeBookkeeping.CMD
                         break;
                     case 2:
                         actionController.ShowActions(actionController.Spendings);
-                        
                         break;
                     case 3:
+                        var category = ChooseCategory();
+                        actionController.ShowActionsByCategory(category);
                         break;
                     case 4:
                         var income = EnterData();
@@ -64,7 +64,22 @@ namespace MyHomeBookkeeping.CMD
         /// <returns></returns>
         private static (string actiongName, double amount, string category, string comment) EnterData()
         {
-            #region Жесть для выбора категории
+            var category = ChooseCategory();
+            Console.WriteLine("Введите название:");
+            var actiongName = Console.ReadLine();
+            var amount = ParseDouble();
+            Console.WriteLine("Введите комментарий:");
+            var comment = Console.ReadLine();
+
+            return (actiongName, amount, category, comment);
+        }
+
+        /// <summary>
+        /// Выбрать категорию расхода или дохода.
+        /// </summary>
+        /// <returns></returns>
+        private static string ChooseCategory()
+        {
             string[] categories = new string[] {"Продукты питания","Коммунальные платежи","Развлечения",
                                                 "Одежда","Предметы туалета","Корманные расходы",
                                                 "Доход: Зарплата","Доход: Шабашка"};
@@ -82,15 +97,7 @@ namespace MyHomeBookkeeping.CMD
             Console.WriteLine();
             var command = Convert.ToInt32(Console.ReadLine());
             var category = categories[command - 1];
-            #endregion
-
-            Console.WriteLine("Введите название:");
-            var actiongName = Console.ReadLine();
-            var amount = ParseDouble();
-            Console.WriteLine("Введите комментарий:");
-            var comment = Console.ReadLine();
-
-            return (actiongName, amount, category, comment);
+            return category;
         }
 
         /// <summary>

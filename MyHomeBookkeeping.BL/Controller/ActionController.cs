@@ -71,6 +71,31 @@ namespace MyHomeBookkeeping.BL.Controller
         {
             items.Sort((s1, s2) => string.Compare(s1.Category, s2.Category));
             items.ForEach(s => Console.WriteLine(s));
+            Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Показать расходы по категориям.
+        /// </summary>
+        /// <param name="category"> Категория расхода. </param>
+        public void ShowActionsByCategory(string category)
+        {
+            List<Spending> spendingsByCategory = Spendings.FindAll(s => s.Category == category);
+            List<Income> incomesByCategory = Incomes.FindAll(i => i.Category == category);
+            if (spendingsByCategory.Count != 0)
+            {
+                spendingsByCategory.Sort((s1, s2) => DateTime.Compare(s1.DateAdded, s2.DateAdded));
+                spendingsByCategory.ForEach(s => Console.WriteLine(s));
+                Console.WriteLine();
+            }
+            else if(incomesByCategory.Count != 0)
+            {
+                incomesByCategory.Sort((s1, s2) => DateTime.Compare(s1.DateAdded, s2.DateAdded));
+                incomesByCategory.ForEach(s => Console.WriteLine(s));
+                Console.WriteLine();
+            }
+            else
+                Console.WriteLine("Категория пуста.");
         }
 
         /// <summary>
@@ -81,6 +106,7 @@ namespace MyHomeBookkeeping.BL.Controller
         {
             items.Sort((s1, s2) => string.Compare(s1.Category, s2.Category));
             items.ForEach(s => Console.WriteLine(s));
+            Console.WriteLine();
         }
 
         /// <summary>
